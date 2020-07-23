@@ -30,11 +30,13 @@ public class ThreadActivity extends AppCompatActivity {
 
             @Override
             public void run() {
+                setButtonStart(mButtonStart);
                 for (int i = 0; i < 10; i++) {
                     SystemClock.sleep(1000);
                     index++;
                     setButtonText(mButtonStart, String.valueOf(index));
                 }
+                setButtonEnd(mButtonStart);
             }
         }).start();
     }
@@ -44,6 +46,24 @@ public class ThreadActivity extends AppCompatActivity {
             @Override
             public void run() {
                 mButtonStart.setText(text);
+            }
+        });
+    }
+
+    private void setButtonStart(Button button) {
+        mButtonStart.post(new Runnable() {
+            @Override
+            public void run() {
+                mButtonStart.setEnabled(false);
+            }
+        });
+    }
+
+    private void setButtonEnd(Button button) {
+        mButtonStart.post(new Runnable() {
+            @Override
+            public void run() {
+                mButtonStart.setEnabled(true);
             }
         });
     }
