@@ -28,4 +28,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ThreadActivity.class);
         startActivity(intent);
     }
+
+    @OnClick(R.id.rx_java)
+    void goRxActivity() {
+        Intent intent = new Intent(this, RxActivity.class);
+        startActivity(intent);
+    }
 }
